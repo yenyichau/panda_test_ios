@@ -1,6 +1,7 @@
 import 'dart:developer';
-import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+
+import '../imports.dart';
 
 class HomePage extends StatefulWidget {
   final String urlLink;
@@ -16,9 +17,9 @@ class _HomePageState extends State<HomePage> {
   bool _isLoading = true;
   int _selectedIndex = 0;
   bool _isBottomBarVisible = true;
-  double bottomBarHeight = 50;
-  double floatingSize = 50;
-  double paddingBottom = 120;
+  double floatingSize = 50.fw;
+  double paddingBottom = 120.fh;
+  double bottomBarHeight = kToolbarHeight.fh;
   String? _latestUrl;
   late InAppWebViewController _webViewController;
 
@@ -28,9 +29,8 @@ class _HomePageState extends State<HomePage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        left = MediaQuery.sizeOf(context).width - floatingSize - 20;
-        top =
-            MediaQuery.sizeOf(context).height - bottomBarHeight - paddingBottom;
+        left = AppSize.width - floatingSize - 20.fw;
+        top = AppSize.height - bottomBarHeight - paddingBottom;
       });
     });
   }
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
           height: floatingSize,
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10).r,
             color: const Color.fromRGBO(28, 40, 54, 1),
             border: Border.all(
               color: Colors.transparent,
@@ -155,6 +155,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget bottomBar() {
+    double iconSize = 24.fw;
+
     return AnimatedPositioned(
       duration:
           const Duration(milliseconds: 0), // Add smooth animation duration
@@ -166,21 +168,41 @@ class _HomePageState extends State<HomePage> {
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.black,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Center(child: Icon(Icons.home, size: 24)),
+            icon: Center(
+              child: Icon(
+                Icons.home,
+                size: iconSize,
+              ),
+            ),
             label: "",
           ),
           BottomNavigationBarItem(
-            icon: Center(child: Icon(Icons.arrow_back, size: 24)),
+            icon: Center(
+              child: Icon(
+                Icons.arrow_back,
+                size: iconSize,
+              ),
+            ),
             label: "",
           ),
           BottomNavigationBarItem(
-            icon: Center(child: Icon(Icons.arrow_forward, size: 24)),
+            icon: Center(
+              child: Icon(
+                Icons.arrow_forward,
+                size: iconSize,
+              ),
+            ),
             label: "",
           ),
           BottomNavigationBarItem(
-            icon: Center(child: Icon(Icons.refresh, size: 24)),
+            icon: Center(
+              child: Icon(
+                Icons.refresh,
+                size: iconSize,
+              ),
+            ),
             label: "",
           ),
         ],

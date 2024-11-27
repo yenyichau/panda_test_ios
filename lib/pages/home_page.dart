@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:test_ios/components/inkwell_wrapper.dart';
 
 import '../imports.dart';
 
@@ -15,10 +16,10 @@ class _HomePageState extends State<HomePage> {
   double left = 0.0;
   double top = 0.0;
   bool _isLoading = true;
-  int _selectedIndex = 0;
   bool _isBottomBarVisible = true;
-  double floatingSize = 50.fw;
-  double paddingBottom = 120.fh;
+  double floatingSize = 50.fh;
+  double paddingBottom = 100.fh;
+  double paddingHorizontal = 10.fw;
   double bottomBarHeight = kToolbarHeight.fh;
   String? _latestUrl;
   late InAppWebViewController _webViewController;
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        left = AppSize.width - floatingSize - 20.fw;
+        left = AppSize.width - floatingSize - paddingHorizontal;
         top = AppSize.height - bottomBarHeight - paddingBottom;
       });
     });
@@ -155,83 +156,83 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget bottomBar() {
-    double iconSize = 24.fw;
+    double iconSize = 25.fh;
 
-    return AnimatedPositioned(
-      duration:
-          const Duration(milliseconds: 0), // Add smooth animation duration
-      bottom: _isBottomBarVisible
-          ? 0
-          : -bottomBarHeight, // Hides the bottom bar smoothly
+    return Positioned(
+      bottom: _isBottomBarVisible ? 0 : -bottomBarHeight,
       left: 0,
       right: 0,
-      child: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Center(
-              child: Icon(
-                Icons.home,
-                size: iconSize,
+      height: bottomBarHeight,
+      child: Container(
+        color: Colors.black,
+        child: Row(
+          children: [
+            // 1
+            Expanded(
+              child: InkWellWrapper(
+                hapticEnabled: true,
+                onTap: () {
+                  if (_latestUrl != null) {
+                    _webViewController.loadUrl(
+                        urlRequest: URLRequest(url: WebUri(_latestUrl!)));
+                  }
+                },
+                child: Icon(
+                  Icons.home,
+                  size: iconSize,
+                  color: Colors.white,
+                ),
               ),
             ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Center(
-              child: Icon(
-                Icons.arrow_back,
-                size: iconSize,
+
+            // 2
+            Expanded(
+              child: InkWellWrapper(
+                hapticEnabled: true,
+                onTap: () {
+                  _webViewController.goBack();
+                },
+                child: Icon(
+                  Icons.arrow_back,
+                  size: iconSize,
+                  color: Colors.white,
+                ),
               ),
             ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Center(
-              child: Icon(
-                Icons.arrow_forward,
-                size: iconSize,
+
+            // 3
+            Expanded(
+              child: InkWellWrapper(
+                hapticEnabled: true,
+                onTap: () {
+                  _webViewController.goForward();
+                },
+                child: Icon(
+                  Icons.arrow_forward,
+                  size: iconSize,
+                  color: Colors.white,
+                ),
               ),
             ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Center(
-              child: Icon(
-                Icons.refresh,
-                size: iconSize,
+
+            // 4
+            Expanded(
+              child: InkWellWrapper(
+                hapticEnabled: true,
+                onTap: () {
+                  _webViewController.reload();
+                },
+                child: Icon(
+                  Icons.refresh,
+                  size: iconSize,
+                  color: Colors.white,
+                ),
               ),
             ),
-            label: "",
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white,
-        onTap: _onItemTapped,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+          ],
+        ),
       ),
     );
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (index == 0) {
-        if (_latestUrl != null) {
-          _webViewController.loadUrl(
-              urlRequest: URLRequest(url: WebUri(_latestUrl!)));
-        }
-      } else if (index == 1) {
-        _webViewController.goBack();
-      } else if (index == 2) {
-        _webViewController.goForward();
-      } else if (index == 3) {
-        _webViewController.reload();
-      }
-    });
   }
 
   void _handleImageClick() {

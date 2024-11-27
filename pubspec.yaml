@@ -13,6 +13,9 @@ dependencies:
   flutter_inappwebview: ^6.1.5
   http: ^1.2.2
   flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.16
+  extended_image: ^9.0.7
+  shimmer: ^3.0.0
   
 dev_dependencies:
   flutter_test:

@@ -15,12 +15,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
     return ScreenUtilInit(
-      designSize: Size(screenSize.width, screenSize.height),
+      designSize: const Size(430, 932),
       builder: (context, child) {
-        return MobileViewWrapper(child: child);
+        return child!;
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

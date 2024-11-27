@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import '../imports.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({super.key});
@@ -17,7 +17,7 @@ class _GamePageState extends State<GamePage> {
         body: Container(
           color: Colors.white,
           child: const Center(
-            child: Text("Game Page"),
+            child: AppText("Game Page"),
           ),
         ),
       ),

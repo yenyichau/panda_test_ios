@@ -57,7 +57,7 @@ class _MainPageState extends State<MainPage> {
           if (isOn && await isValidUrl(url)) {
             urlLink = url;
           } else {
-            urlLink = url;
+            urlLink = "";
           }
         }
       } else {

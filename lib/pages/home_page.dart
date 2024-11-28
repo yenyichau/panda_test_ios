@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:test_ios/components/inkwell_wrapper.dart';
+import 'package:tap_challenge_ios/components/inkwell_wrapper.dart';
 
 import '../imports.dart';
 

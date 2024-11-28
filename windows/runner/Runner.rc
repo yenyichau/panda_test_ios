@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "test_ios" "\0"
+            VALUE "FileDescription", "tap_challenge_ios" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "test_ios" "\0"
+            VALUE "InternalName", "tap_challenge_ios" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "test_ios.exe" "\0"
-            VALUE "ProductName", "test_ios" "\0"
+            VALUE "OriginalFilename", "tap_challenge_ios.exe" "\0"
+            VALUE "ProductName", "tap_challenge_ios" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

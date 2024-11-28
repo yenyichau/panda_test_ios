@@ -109,7 +109,7 @@ class _GamePageState extends State<GamePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarWidget(
-        text: 'Tap Challenge',
+        text: 'TapChallenge',
         centerTitle: true,
         actions: [
           if (gameStarted)

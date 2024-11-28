@@ -1,4 +1,4 @@
-package com.example.test_ios
+package com.mobile.tapchallenge
 
 import io.flutter.embedding.android.FlutterActivity
 

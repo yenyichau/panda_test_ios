@@ -1,5 +1,5 @@
-import 'package:test_ios/imports.dart';
-import 'package:test_ios/pages/main_page.dart';
+import 'package:tap_challenge_ios/imports.dart';
+import 'package:tap_challenge_ios/pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Tap Challenge',
+        title: 'TapChallenge',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,

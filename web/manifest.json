@@ -1,6 +1,6 @@
 {
-    "name": "test_ios",
-    "short_name": "test_ios",
+    "name": "tap_challenge_ios",
+    "short_name": "tap_challenge_ios",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

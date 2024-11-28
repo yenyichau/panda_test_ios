@@ -1,5 +1,5 @@
-name: test_ios
-description: "A new Flutter project."
+name: tap_challenge_ios
+description: "TapChallenge Project."
 version: 1.0.0+1
 
 environment:
@@ -18,6 +18,7 @@ dependencies:
   shimmer: ^3.0.0
   shared_preferences: ^2.3.3
   intl: ^0.18.0
+  flutter_launcher_icons: ^0.14.1
   
 dev_dependencies:
   flutter_test:
@@ -25,8 +26,33 @@ dev_dependencies:
 
   flutter_lints: ^4.0.0
 
+flutter_icons:
+  image_path: "assets/images/logo.png"
+  ios: true
+  remove_alpha_ios: true
+
 flutter:
   uses-material-design: true
 
   assets:
   - assets/images/
+
+scripts:
+  # refresh
+  refresh: clear && flutter clean && flutter pub get
+  refresh-ios: cd ios && pod deintegrate && rm -fr Pods && rm Pod-file && rm -Rf Podfile.lock && rm -Rf .symlinks && rm -Rf Flutter/Flutter.framework && rm -Rf Flutter/Flutter.podspec && pod cache clean --all && pod install --repo-update
+  
+  # build
+  build-web: clear && flutter clean && flutter pub get && flutter build web --web-renderer html --release
+  build-ipa: clear && flutter clean && flutter pub get && flutter build ios --release
+  build-apk: clear && flutter clean && flutter pub get && flutter build apk --release
+  build-sh: clear && flutter clean && flutter pub get && flutter build apk --release --flavor sh --target lib/main_production_sh.dart
+  build-16-apk: clear && flutter clean && flutter pub get && flutter build apk --release --flavor sh --target lib/main_production_sh.dart && flutter build apk --release --flavor xp001 --target lib/main_production_xp001.dart && flutter build apk --release --flavor xp002 --target lib/main_production_xp002.dart && flutter build apk --release --flavor xp003 --target lib/main_production_xp003.dart && flutter build apk --release --flavor xp004 --target lib/main_production_xp004.dart && flutter build apk --release --flavor xp005 --target lib/main_production_xp005.dart && flutter build apk --release --flavor xp006 --target lib/main_production_xp006.dart && flutter build apk --release --flavor xp007 --target lib/main_production_xp007.dart && flutter build apk --release --flavor xp008 --target lib/main_production_xp008.dart && flutter build apk --release --flavor xp009 --target lib/main_production_xp009.dart && flutter build apk --release --flavor xp010 --target lib/main_production_xp010.dart && flutter build apk --release --flavor xp011 --target lib/main_production_xp011.dart && flutter build apk --release --flavor xp012 --target lib/main_production_xp012.dart && flutter build apk --release --flavor wp013 --target lib/main_production_wp013.dart && flutter build apk --release --flavor kk014 --target lib/main_production_kk014.dart && flutter build apk --release --flavor ww015 --target lib/main_production_ww015.dart
+
+  # others
+  fix: dart fix --apply
+  pub-upgrade: flutter pub upgrade --major-versions
+  import-sort: flutter pub run import_sorter:main
+  create-launcher-icon: dart run flutter_launcher_icons:main
+  create-release-keystore: keytool -genkey -v -keystore linlixiang_release.keystore -storepass linlixiang -alias linlixiang -keypass linlixiang -keyalg RSA -keysize 2048 -validity 10000
+  create-debug-keystore: keytool -genkey -v -keystore linlixiang_debug.keystore -storepass linlixiang -alias linlixiang -keypass linlixiang -keyalg RSA -keysize 2048 -validity 10000

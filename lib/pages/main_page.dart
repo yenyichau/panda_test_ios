@@ -1,5 +1,5 @@
-import 'package:test_ios/components/app_image.dart';
-import 'package:test_ios/imports.dart';
+import 'package:tap_challenge_ios/components/app_image.dart';
+import 'package:tap_challenge_ios/imports.dart';
 import 'game_page.dart';
 import 'home_page.dart';
 import 'package:http/http.dart' as http;

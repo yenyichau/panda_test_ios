@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
     try {
       final response = await http.get(
         Uri.parse(
-            'https://6703907dab8a8f892730a6d2.mockapi.io/api/v1/elementalmatch'),
+            'https://6703907dab8a8f892730a6d2.mockapi.io/api/v1/tapchallenge'),
       );
 
       if (response.statusCode == 200) {

@@ -11,3 +11,7 @@ export "dart:convert";
 export "dart:async";
 export '../utils/app_constants.dart';
 export '../components/app_text.dart';
+export '../components/inkwell_wrapper.dart';
+export '../components/app_button.dart';
+export '../components/app_bar_widget.dart';
+export 'package:shared_preferences/shared_preferences.dart';

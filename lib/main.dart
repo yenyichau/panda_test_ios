@@ -18,7 +18,12 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       designSize: const Size(430, 932),
       builder: (context, child) {
-        return child!;
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: const TextScaler.linear(1.0),
+          ),
+          child: child!,
+        );
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

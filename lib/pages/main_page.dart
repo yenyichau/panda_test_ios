@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
     return const SafeArea(
       child: Scaffold(
         extendBody: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         body: Center(
           child: CircularProgressIndicator(),
         ),

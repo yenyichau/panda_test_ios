@@ -40,7 +40,7 @@ class AppText extends StatelessWidget {
               children: [
                 WidgetSpan(
                   child: Padding(
-                    padding: EdgeInsets.only(right: 5.fw),
+                    padding: const EdgeInsets.only(right: 5).r,
                     child: const AppText(
                       "*",
                       color: Colors.red,
@@ -58,7 +58,7 @@ class AppText extends StatelessWidget {
   Widget textWidget(BuildContext ctx) {
     TextStyle textModeTextStyle = TextStyle(
       color: Colors.black,
-      fontSize: kFont15.sp,
+      fontSize: kFont12.sp,
       fontWeight: FontWeight.normal,
     );
 

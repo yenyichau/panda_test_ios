@@ -59,8 +59,7 @@ class _GamePageState extends State<GamePage> {
         if (timeLeft > 0) {
           timeLeft--;
         } else {
-          gameStarted = false;
-          timer.cancel();
+          finishGame();
         }
       });
     });
@@ -83,7 +82,7 @@ class _GamePageState extends State<GamePage> {
     });
   }
 
-  void forfeitGame() async {
+  void finishGame() async {
     await _saveScore();
 
     setState(() {
@@ -117,14 +116,14 @@ class _GamePageState extends State<GamePage> {
               child: SizedBox(
                 height: kToolbarHeight.fh,
                 child: InkWellWrapper(
-                  onTap: forfeitGame,
+                  onTap: finishGame,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                             horizontal: kHorizontalPadding)
                         .r,
                     child: const Center(
                       child: AppText(
-                        "Forfeit",
+                        "Finish",
                         fontSize: kFont14,
                       ),
                     ),
@@ -308,7 +307,7 @@ class _GamePageState extends State<GamePage> {
       'difficulty': difficulty,
     };
 
-    scoreHistory.add(entry);
+    scoreHistory.insert(0, entry);
 
     // Save to shared preferences
     await prefs.setString('scoreHistory', jsonEncode(scoreHistory));
@@ -320,6 +319,12 @@ class _GamePageState extends State<GamePage> {
     if (savedScores != null) {
       setState(() {
         scoreHistory = List<Map<String, dynamic>>.from(jsonDecode(savedScores));
+        // Sort by date in descending order
+        scoreHistory.sort((a, b) {
+          final dateA = DateTime.parse(a['date']);
+          final dateB = DateTime.parse(b['date']);
+          return dateB.compareTo(dateA); // Latest date first
+        });
       });
     }
   }

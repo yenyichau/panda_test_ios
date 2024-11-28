@@ -58,7 +58,7 @@ class AppText extends StatelessWidget {
   Widget textWidget(BuildContext ctx) {
     TextStyle textModeTextStyle = TextStyle(
       color: Colors.black,
-      fontSize: kFont12.sp,
+      fontSize: kFont14.sp,
       fontWeight: FontWeight.normal,
     );
 

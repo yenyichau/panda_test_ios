@@ -68,7 +68,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                         widget.text!,
                         color: widget.textColor ?? Colors.black,
                         fontWeight: FontWeight.w600,
-                        fontSize: widget.textSize ?? kFont12,
+                        fontSize: widget.textSize ?? kFont14,
                       )
                     : widget.title,
                 leading: widget.leading ?? const SizedBox.shrink(),

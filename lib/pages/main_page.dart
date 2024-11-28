@@ -1,3 +1,4 @@
+import 'package:test_ios/components/app_image.dart';
 import 'package:test_ios/imports.dart';
 import 'game_page.dart';
 import 'home_page.dart';
@@ -30,12 +31,15 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget loading() {
-    return const SafeArea(
-      child: Scaffold(
-        extendBody: true,
-        backgroundColor: Colors.white,
-        body: Center(
-          child: CircularProgressIndicator(),
+    return Scaffold(
+      extendBody: true,
+      backgroundColor: Colors.white,
+      body: Center(
+        child: AppImage.asset(
+          width: 150.fh,
+          height: 150.fh,
+          name: "assets/images/logo.png",
+          radius: 10,
         ),
       ),
     );

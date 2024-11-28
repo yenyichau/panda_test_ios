@@ -107,8 +107,9 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBarWidget(
-        text: 'Tap Game',
+        text: 'Tap Challenge',
         centerTitle: true,
         actions: [
           if (gameStarted)
@@ -124,7 +125,7 @@ class _GamePageState extends State<GamePage> {
                     child: const Center(
                       child: AppText(
                         "Forfeit",
-                        fontSize: kFont12,
+                        fontSize: kFont14,
                       ),
                     ),
                   ),
@@ -133,96 +134,100 @@ class _GamePageState extends State<GamePage> {
             ),
         ],
       ),
-      body: Stack(
-        children: [
-          if (gameStarted)
-            Positioned(
-              top: targetPosition.dy,
-              left: targetPosition.dx,
-              child: GestureDetector(
-                onTap: onTargetTapped,
+      body: Container(
+        color: Colors.grey.withOpacity(0.1),
+        child: Stack(
+          children: [
+            if (gameStarted)
+              Positioned(
+                top: targetPosition.dy,
+                left: targetPosition.dx,
+                child: GestureDetector(
+                  onTap: onTargetTapped,
+                  child: Container(
+                    width: 50.fh,
+                    height: 50.fh,
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+            if (!gameStarted)
+              Center(
                 child: Container(
-                  width: 50,
-                  height: 50,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
+                  margin:
+                      EdgeInsets.symmetric(horizontal: AppSize.width * 0.1).r,
+                  padding: const EdgeInsets.all(kHorizontalPadding).r,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.5),
+                    ),
+                    borderRadius: BorderRadius.circular(10).r,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const AppText(
+                        'Select a difficulty to start:',
+                      ),
+                      const SizedBox(height: 20),
+                      AppButton(
+                        onTap: () => startGame("Easy"),
+                        text: "Easy",
+                        buttonColor: Colors.green.withOpacity(0.2),
+                      ),
+                      10.heightSpace,
+                      AppButton(
+                        onTap: () => startGame("Medium"),
+                        text: "Medium",
+                        buttonColor: Colors.yellow.withOpacity(0.2),
+                      ),
+                      10.heightSpace,
+                      AppButton(
+                        onTap: () => startGame("Hard"),
+                        text: "Hard",
+                        buttonColor: Colors.red.withOpacity(0.2),
+                      ),
+                      50.heightSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppButton(
+                            onTap: _showHistoryDialog,
+                            text: "Check History",
+                            textSize: kFont12,
+                            borderColor: Colors.grey,
+                            padding: const EdgeInsets.symmetric(
+                                    horizontal: kHorizontalPadding, vertical: 5)
+                                .r,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-          if (!gameStarted)
-            Center(
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: AppSize.width * 0.1).r,
-                padding: const EdgeInsets.all(kHorizontalPadding).r,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.grey.withOpacity(0.5),
-                  ),
-                  borderRadius: BorderRadius.circular(10).r,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const AppText(
-                      'Select a difficulty to start:',
-                    ),
-                    const SizedBox(height: 20),
-                    AppButton(
-                      onTap: () => startGame("Easy"),
-                      text: "Easy",
-                      buttonColor: Colors.green.withOpacity(0.2),
-                    ),
-                    10.heightSpace,
-                    AppButton(
-                      onTap: () => startGame("Medium"),
-                      text: "Medium",
-                      buttonColor: Colors.yellow.withOpacity(0.2),
-                    ),
-                    10.heightSpace,
-                    AppButton(
-                      onTap: () => startGame("Hard"),
-                      text: "Hard",
-                      buttonColor: Colors.red.withOpacity(0.2),
-                    ),
-                    50.heightSpace,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppButton(
-                          onTap: _showHistoryDialog,
-                          text: "Check History",
-                          textSize: kFont10,
-                          borderColor: Colors.grey,
-                          padding: const EdgeInsets.symmetric(
-                                  horizontal: kHorizontalPadding, vertical: 5)
-                              .r,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+            Positioned(
+              top: 20,
+              left: 20,
+              child: AppText(
+                'Score: $score',
+                fontWeight: FontWeight.w500,
               ),
             ),
-          Positioned(
-            top: 20,
-            left: 20,
-            child: AppText(
-              'Score: $score',
-              fontWeight: FontWeight.w500,
+            Positioned(
+              top: 20,
+              right: 20,
+              child: AppText(
+                'Time: $timeLeft',
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          Positioned(
-            top: 20,
-            right: 20,
-            child: AppText(
-              'Time: $timeLeft',
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -248,7 +253,7 @@ class _GamePageState extends State<GamePage> {
                 )
               : SizedBox(
                   height: AppSize.height * 0.6,
-                  width: AppSize.width * 0.5,
+                  width: AppSize.width * 0.7,
                   child: ListView.separated(
                     itemCount: scoreHistory.length,
                     itemBuilder: (context, index) {
@@ -264,7 +269,7 @@ class _GamePageState extends State<GamePage> {
                         subtitle: AppText(
                           formattedDate,
                           color: Colors.grey,
-                          fontSize: kFont10,
+                          fontSize: kFont12,
                         ),
                       );
                     },
